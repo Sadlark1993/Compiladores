@@ -1,0 +1,106 @@
+#Options
+GenerateScanner = true
+GenerateParser = true
+Language = Java
+ScannerName = Lexico
+ParserName = Sintatico
+SemanticName = Semantico
+ScannerCaseSensitive = true
+ScannerTable = Full
+Input = Stream
+Parser = LL
+#RegularDefinitions
+LETRA : [a-zA-Z]
+DIGITO : [0-9]
+#Tokens
+"+"
+"-"
+"*" 
+"/"
+"("
+")"
+"="
+"leia"
+"escreva:"
+"int"
+"."
+","
+"'"
+"!"
+"?"
+"se"
+"entao"
+"enquanto"
+"faca"
+"=="
+"&&"
+"||"
+"<"
+">"
+"<="
+">="
+"!="
+"{"
+"}"
+
+
+: [\s\t\n\r]*
+ID: {LETRA} ({LETRA}|{DIGITO})*
+NUMERO: {DIGITO}+
+FINAL: ";"
+#NonTerminals
+<LINHA>
+<ATRIB>
+<LEITURA>
+<ESCRITA>
+<EXP>
+<FATOR>
+<TERMO>
+<OP>
+<TEXT>
+<TEXT2>
+<ESP>
+<COND>
+<BOOLEXP>
+<BOOLTERMO>
+<BOOL>
+<LINHAS>
+<LOOP>
+<DEF>
+<TIPO>
+#Grammar
+//O analisador sempre entra no LINHA antes de tudo.
+<LINHA> ::= <ATRIB>|<ESCRITA>|<COND>|<LOOP>|<DEF>;
+
+//Definicao do comando de atribuicao, inclui leitura.
+<ATRIB> ::= ID "=" <EXP>;
+<EXP> ::= <FATOR><TERMO>|"("<EXP>")"|<LEITURA>;
+<TERMO> ::= <OP><TERMO>|<EXP>|FINAL;
+<FATOR> ::= ID|NUMERO;
+<OP> ::= "+"|"-"|"/"|"*";
+<LEITURA> ::= "leia" FINAL;
+
+//Definicao do comando escrita.
+<ESCRITA> ::= "escreva:" <TEXT> ;
+<TEXT> ::= <EXP>|"'"<TEXT2>;
+<TEXT2> ::= <FATOR><TEXT2>|<ESP><TEXT2>|"'" FINAL;
+<ESP> ::= "."|","|"="|"!"|"?";
+
+//Definicao do condicional.
+<COND> ::= "se" <BOOLEXP> "{" <LINHAS>;
+<BOOLEXP> ::= <FATOR><BOOLTERMO>|"("<BOOLEXP>")";
+<BOOLTERMO> ::= <BOOL><BOOLTERMO>|<BOOLEXP>| "entao";
+<BOOL> ::= "=="|">"|"<"|">="|"<="|"&&"|"||"|"!"| "!=";
+//varias linhas para colocar dentro da condicional.
+<LINHAS> ::= <LINHA><LINHAS>|"}";
+
+//Definicao do loop
+<LOOP> ::= "enquanto" <BOOLEXP> "faca" "{" <LINHAS>;
+
+//Definicao do tipo.
+<DEF> ::= <TIPO> ID FINAL;
+<TIPO> ::= "int";
+
+
+
+

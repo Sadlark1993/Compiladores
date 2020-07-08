@@ -1,0 +1,5 @@
+
+prog
+inteiro var1 = 5;
+& | junior
+fim;; 21asdf

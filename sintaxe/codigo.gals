@@ -1,0 +1,142 @@
+#Options
+GenerateScanner = true
+GenerateParser = true
+Language = Java
+ScannerName = Lexico
+ParserName = Sintatico
+SemanticName = Semantico
+ScannerCaseSensitive = true
+ScannerTable = Full
+Input = Stream
+Parser = LL
+#RegularDefinitions
+LETRA : [a-zA-Z]
+DIGITO : [0-9]
+ESPECIAL : [","".""?""!"";""@""#""%""$"]
+COMENTARIO :  "%" [^ "*" ]* 
+#Tokens
+"+"
+"-"
+"*" 
+"/"
+"("
+")"
+"="
+"leia"
+"escreva"
+"."
+","
+"'"
+"!"
+"?"
+"se"
+"senao"
+"enquanto"
+"faca"
+"=="
+"&&"
+"||"
+"<"
+">"
+"<="
+">="
+"!="
+"{"
+"}"
+"FIM"
+"["
+"]"
+":="
+"\*"
+"*/"
+"%"
+
+: [\s\t\n\r]*
+:! {COMENTARIO}
+ID: {LETRA} ({LETRA}|{DIGITO})*
+NUMERO: {DIGITO}+
+FINAL: ";"
+TEXTO: "'"({LETRA}|{DIGITO}|" "|{ESPECIAL})*"'"
+
+#NonTerminals
+<COD>
+<LINHA>
+<ATRIB>
+<ATRIB2>
+<LEITURA>
+<ESCRITA>
+<EXP>
+<FATOR>
+<FATOR2>
+<OPERANDO>
+<TERMO>
+<OP>
+<SOMA>
+<MULT>
+<TEXT>
+<TEXT2>
+<ESP>
+<COND>
+<BOOLEXP>
+<BOOLTERMO>
+<BOOLFATOR>
+<BOOLFATOR2>
+<BOOLOP>
+<BOOLOPERADOR>
+<SENAO>
+<BOOL>
+<LINHAS>
+<LOOP>
+<TIPO>
+<SE>
+#Grammar
+<COD> ::= <LINHA><COD>|î;
+//O analisador sempre entra no LINHA antes de tudo.
+<LINHA> ::= <ATRIB>|<ESCRITA>|<COND>|<LOOP>;
+
+//Definicao do comando de atribuicao, inclui leitura.
+<ATRIB> ::= ID ":=" <ATRIB2> FINAL;
+<ATRIB2> ::= <EXP> | <LEITURA> | TEXTO;
+
+<LEITURA> ::= "leia";
+
+
+<EXP> ::= <FATOR><TERMO>;
+<TERMO> ::= <SOMA><FATOR><TERMO> |î;
+<FATOR> ::= <OPERANDO><FATOR2>;
+<FATOR2> ::= <MULT><OPERANDO><FATOR2>|î;
+<OPERANDO> ::= ID|NUMERO|"("<EXP>")";
+<SOMA> ::= "+" | "-";
+<MULT> ::= "/"|"*";
+
+
+//Definicao do comando escrita.
+<ESCRITA> ::= "escreva" <TEXT> FINAL;
+<TEXT> ::= TEXTO<TEXT2> | <EXP><TEXT2>;
+<TEXT2> ::= ","<TEXT>|î;
+
+
+
+<COND> ::= "se" <BOOLEXP> "{" <LINHAS> "}" <SENAO>; 
+
+<BOOLEXP> ::= <BOOLFATOR><BOOLTERMO>;
+<BOOLTERMO> ::= <BOOLOPERADOR><BOOLFATOR><BOOLTERMO> |î;
+<BOOLFATOR> ::= <EXP>|"["<BOOLEXP>"]";
+<BOOLOPERADOR> ::= ">" |"<"|"==";
+
+
+<LINHAS> ::= <LINHA><LINHAS>|î;
+
+<SENAO> ::= "senao" <SE>  |î;
+<SE> ::= "{" <LINHAS> "}" <SENAO> | <COND>;
+
+
+
+//Definicao do loop
+<LOOP> ::= "enquanto" <BOOLEXP> "{" <LINHAS> "}";
+
+
+
+
+
+

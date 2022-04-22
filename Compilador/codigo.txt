@@ -1,0 +1,38 @@
+
+%fatorial
+
+a := leia;
+b := a-1;
+enquanto(b>1){
+	a := a*b;
+	b := b-1;
+}
+
+escreva a;
+
+%analise combinatoria
+
+leia a;
+leia b;
+leia c;
+
+se a<b{
+	se b<c{
+		escreva a, ', ', b, ' ', c, '\n'; 
+	}senao se a<c{
+		escreva a;
+		escreva ' ';
+		escreva c;
+		escreva ' ';
+		escreva b;
+		escreva '\n';
+	}senao{
+		escreva c;
+		escreva ' ';
+		escreva a;
+		escreva ' ';
+		escreva b;
+		escreva '\n';	
+	}
+}
+

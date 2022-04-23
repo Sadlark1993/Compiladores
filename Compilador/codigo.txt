@@ -1,20 +1,20 @@
 
-%fatorial
+%fatorial%
 
 a := leia;
 b := a-1;
-enquanto(b>1){
+enquanto b>1{
 	a := a*b;
 	b := b-1;
 }
 
 escreva a;
 
-%analise combinatoria
+%analise combinatoria%
 
-leia a;
-leia b;
-leia c;
+a := leia;
+b := leia;
+c := leia;
 
 se a<b{
 	se b<c{
@@ -35,4 +35,3 @@ se a<b{
 		escreva '\n';	
 	}
 }
-

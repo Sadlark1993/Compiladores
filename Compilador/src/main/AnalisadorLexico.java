@@ -99,6 +99,7 @@ public class AnalisadorLexico {
             case ';':
                 return q42();
             case '\'':
+                lexema += '\'';
                 return q43();
             case '%':
                 return q46();

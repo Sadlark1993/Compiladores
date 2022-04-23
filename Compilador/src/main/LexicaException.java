@@ -6,7 +6,7 @@ package main;
 
 public class LexicaException extends Exception{
     public LexicaException(){
-        super("Erro. Nao ha mais linhas no arquivo.");
+        super("Erro lexico.");
     }
     public LexicaException(String msg){
         super(msg);

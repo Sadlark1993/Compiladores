@@ -12,8 +12,8 @@ Parser = LL
 #RegularDefinitions
 LETRA : [a-zA-Z]
 DIGITO : [0-9]
-ESPECIAL : [","".""?""!"";""@""#""%""$"]
-COMENTARIO :  "%" [^ "*" ]* 
+ESPECIAL : [","".""?""!"";""@""#""%""$""\"]
+COMENTARIO :  "%" [^ "%" ]* "%"
 #Tokens
 "+"
 "-"
@@ -43,7 +43,6 @@ COMENTARIO :  "%" [^ "*" ]*
 "!="
 "{"
 "}"
-"FIM"
 "["
 "]"
 ":="

@@ -16,6 +16,7 @@ public class MainClass {
         String[] linha = new String[4];
         Stack<String> tokensStack = new Stack<String>();
 
+        tokensStack.push("$");
         //the list of tokens must be stacked in the reverse order. So the first token will be the first to be analized.
         for(int i = linTabLex.length - 1; i >=1;i--){
             aux = linTabLex[i];

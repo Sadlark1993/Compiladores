@@ -14,20 +14,387 @@ public class AnalisadorSintatico {
     nTermStack.push("<COD>");
     int aux = 0;
 
-    while(tokensStack.peek() != "$" && nTermStack.peek() != "$"){
-      if(nTermStack.peek() == "<COD>"){
-        //to do
-      }else if(nTermStack.peek()=="$"){
-        return aux;
-      }else if(tokensStack.peek() == "$"){
-        throw new SintaticaException("Fim inesperado do codigo");
+    while(!tokensStack.peek().equals("$") && !nTermStack.peek().equals("$")){
+      //System.out.println("loop: "+aux); //debug
+
+      
+      if(tokensStack.peek().equals( nTermStack.peek())){ //desempilhamento
+        tokensStack.pop();
+        nTermStack.pop();
+        //System.out.println("pop"); // debug
+      }else if(nTermStack.peek().equals("<COD>")){
+        if(tokensStack.peek().equals("$")){
+          op1();
+        }else if(tokensStack.peek().equals("escreva")||tokensStack.peek().equals("se")||tokensStack.peek().equals("enquanto")||tokensStack.peek().equals("id")){
+          op0();
+        }else{
+          throw new SintaticaException("Sem combinacao para o nao terminal <COD>. Token na pilha: "+tokensStack.peek()+".");
+        }
+      }else if(nTermStack.peek().equals("<LINHA>")){
+        if(tokensStack.peek().equals("escreva")){
+          op3();
+        }else if(tokensStack.peek().equals("se")){
+          op4();
+        }else if(tokensStack.peek().equals("enquanto")){
+          op5();
+        }else if(tokensStack.peek().equals("id")){
+          op2();
+        }else{
+          throw new SintaticaException("Sem combinacao para o nao terminal <LINHA>. Token na pilha: "+tokensStack.peek()+".");
+        }
+      }else if(nTermStack.peek().equals("<ATRIB>")){
+        if(tokensStack.peek().equals("id")){
+          op6();
+        }else{
+          throw new SintaticaException("Sem combinacao para o nao terminal <ATRIB>");
+        }
+      }else if(nTermStack.peek().equals("<ATRIB2>")){
+        switch(tokensStack.peek()){
+          case "apar":
+            op7();
+            break;
+          case "leia":
+            op8();
+            break;
+          case "id":
+            op7();
+            break;
+          case "numero":
+            op7();
+            break;
+          case "string":
+            op9();
+            break;
+          default:
+            throw new SintaticaException("Sem combinacao para o nao terminal <ATRIB2>");
+        }
+      }else if(nTermStack.peek().equals("<LEITURA>")){
+        if(tokensStack.peek().equals("leia")){
+          op10();
+        }else{
+          throw new SintaticaException("Sem combinacao para o nao terminal <LEITURA>");
+        }
+      }else if(nTermStack.peek().equals("<ESCRITA>")){
+        if(tokensStack.peek().equals("escreva")){
+          op24();
+        }else{
+          throw new SintaticaException("Sem combinacao para o nao terminal <LEITURA>");
+        }
+      }else if(nTermStack.peek()=="<EXP>"){
+        switch(tokensStack.peek()){
+          case "apar":
+            op11();
+            break;
+          case "id":
+            op11();
+            break;
+          case "numero":
+            op11();
+            break;
+          default:
+            throw new SintaticaException("Sem combinacao para o nao terminal <EXP>");
+        }
+      }else if(nTermStack.peek()=="<FATOR>"){
+        switch(tokensStack.peek()){
+          case "apar":
+            op14();
+            break;
+          case "id":
+            op14();
+            break;
+          case "numero":
+            op14();
+            break;
+          default:
+            throw new SintaticaException("Sem combinacao para o nao terminal <FATOR>");
+        }
+      }else if(nTermStack.peek()=="<FATOR2>"){
+        switch(tokensStack.peek()){
+          case "mais":
+            op16();
+            break;
+          case "menos":
+            op16();
+            break;
+          case "mult":
+            op15();
+            break;
+          case "div":
+            op15();
+            break;
+          case "fpar":
+            op16();
+            break;
+          case "virgula":
+            op16();
+            break;
+          case "igual":
+            op16();
+            break;
+          case "menor":
+            op16();
+            break;
+          case "maior":
+            op16();
+            break;
+          case "achave":
+            op16();
+            break;
+          case "fcolch":
+            op16();
+            break;
+          case "final":
+            op16();
+            break;
+          default:
+            throw new SintaticaException("Sem combinacao para o nao terminal <FATOR2>");
+
+        }
+      }else if(nTermStack.peek()=="<OPERANDO>"){
+        switch(tokensStack.peek()){
+          case "apar":
+            op19();
+            break;
+          case "id":
+            op17();
+            break;
+          case "numero":
+            op18();
+            break;
+          default:
+          throw new SintaticaException("Sem combinacao para o nao terminal <FATOR2>");
+        }
+      }else if(nTermStack.peek()=="<TERMO>"){
+        switch(tokensStack.peek()){
+          case "mais":
+            op12();
+            break;
+          case "menos":
+            op12();
+            break;
+          case "fpar":
+            op13();
+            break;
+          case "virgula":
+            op13();
+            break;
+          case "igual":
+            op13();
+            break;
+          case "maior":
+            op13();
+            break;
+          case "menor":
+            op13();
+            break;
+          case "achave":
+            op13();
+            break;
+          case "fcolch":
+            op13();
+            break;
+          case "final":
+            op13();
+            break;
+          default:
+            throw new SintaticaException("Sem combinacao para o nao terminal <TERMO>");
+        }
+      }else if(nTermStack.peek()=="<SOMA>"){
+        switch(tokensStack.peek()){
+          case "mais":
+            op20();
+            break;
+          case "menos":
+            op21();
+            break;
+          default:
+          throw new SintaticaException("Sem combinacao para o nao terminal <SOMA>");
+        }
+      }else if(nTermStack.peek()=="<MULT>"){
+        switch(tokensStack.peek()){
+          case "mult":
+            op23();
+            break;
+          case "div":
+            op22();
+            break;
+          default:
+            throw new SintaticaException("Sem combinacao para o nao terminal <MULT>");
+
+        }
+      }else if(nTermStack.peek()=="<TEXT>"){
+        switch(tokensStack.peek()){
+          case "apar":
+            op26();
+            break;
+          case "id":
+            op26();
+            break;
+          case "numero":
+            op26();
+            break;
+          case "string":
+            op25();
+            break;
+          default:
+            throw new SintaticaException("Sem combinacao para o nao terminal <TEXT>");
+        }
+      }else if(nTermStack.peek()=="<TEXT2>"){
+        switch(tokensStack.peek()){
+          case "virgula":
+            op27();
+            break;
+          case "final":
+            op28();
+            break;
+          default:
+            throw new SintaticaException("Sem combinacao para o nao terminal <TEXT>");
+        }
+      }else if(nTermStack.peek().equals("<COND>")){
+        if(tokensStack.peek().equals("se")){
+          op29();
+        }else{
+          throw new SintaticaException("Sem combinacao para o nao terminal <COND>");
+        }
+      }else if(nTermStack.peek().equals("<BOOLEXP>")){
+        switch(tokensStack.peek()){
+          case "apar":
+            op30();
+            break;
+          case "acolch":
+            op30();
+            break;
+          case "id":
+            op30();
+            break;
+          case "numero":
+            op30();
+            break;
+          default:
+            throw new SintaticaException("Sem combinacao para o nao terminal <BOOLEXP>");
+        }
+      }else if(nTermStack.peek()=="<BOOLTERMO>"){
+        switch(tokensStack.peek()){
+          case "igual":
+            op31();
+            break;
+          case "menor":
+            op31();
+            break;
+          case "maior":
+            op31();
+            break;
+          case "achave":
+            op32();
+            break;
+          case "fcolch":
+            op32();
+            break;
+          default:
+            throw new SintaticaException("Sem combinacao para o nao terminal <BOOLEXP>");
+        }
+      }else if(nTermStack.peek()=="<BOOLFATOR>"){
+        switch(tokensStack.peek()){
+          case "apar":
+            op33();
+            break;
+          case "acolch":
+            op34();
+            break;
+          case "id":
+            op33();
+            break;
+          case "numero":
+            op33();
+            break;
+          default:
+            throw new SintaticaException("Sem combinacao para o nao terminal <BOOLEXP>");
+        }
+      }else if(nTermStack.peek()=="<BOOLOPERADOR>"){
+        switch(tokensStack.peek()){
+          case "igual":
+            op37();
+            break;
+          case "menor":
+            op36();
+            break;
+          case "maior":
+            op35();
+            break;
+          default:
+            throw new SintaticaException("Sem combinacao para o nao terminal <BOOLOPERADOR>");
+        }
+      }else if(nTermStack.peek()=="<SENAO>"){
+        switch(tokensStack.peek()){
+          case "$":
+            op41();
+            break;
+          case "escreva":
+            op41();
+            break;
+          case "se":
+            op41();
+            break;
+          case "senao":
+            op40();
+            break;
+          case "enquanto":
+            op41();
+            break;
+          case "fchave":
+            op41();
+            break;
+          case "id":
+            op41();
+            break;
+          default:
+            throw new SintaticaException("Sem combinacao para o nao terminal <SENAO>");
+        }
+      }else if(nTermStack.peek()=="<LINHAS>"){
+        switch(tokensStack.peek()){
+          case "escreva":
+            op38();
+            break;
+          case "se":
+            op38();
+            break;
+          case "enquanto":
+            op38();
+            break;
+          case "fchave":
+            op39();
+            break;
+          case "id":
+            op38();
+            break;
+          default:
+            throw new SintaticaException("Sem combinacao para o nao terminal <LINHAS>");
+        }
+      }else if(nTermStack.peek().equals("<LOOP>")){
+        if(tokensStack.peek().equals("enquanto")){
+          op44();
+        }else{
+          throw new SintaticaException("Sem combinacao para o nao terminal <LOOP>");
+        }
+      }else if(nTermStack.peek().equals("<SE>")){
+        switch(tokensStack.peek()){
+          case "se":
+            op43();
+            break;
+          case "achave":
+            op42();
+            break;
+          default:
+            throw new SintaticaException("Sem combinacao para o nao terminal <SE>");
+        }
       }else{
-        throw new SintaticaException("Não houve nenhuma mudança nas pilhas");
+        throw new SintaticaException("Erro Sintatico. Termo esperado: "+nTermStack.peek());
       }
+
       aux++;
     }
 
-    
+    System.out.println("Analise completa. Nenhum erro encontrado.");
     return -1;
   }
 
@@ -36,11 +403,10 @@ public class AnalisadorSintatico {
     nTermStack.push("<LINHA>");
   }
 
-  /*<COD> ::= î
+  //<COD> ::= î
   private static void op1(){
-    nTermStack.pop(); //we don't need it
+    nTermStack.pop();
   }
-  */
 
   //<LINHA> ::= <ATRIB>
   private static void op2(){

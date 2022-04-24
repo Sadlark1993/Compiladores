@@ -6,7 +6,7 @@ import java.util.Stack;
 
 public class MainClass {
 
-    public static void main(String[] args) throws LexicaException {
+    public static void main(String[] args) throws LexicaException, SintaticaException {
         String tabelaLexica = AnalisadorLexico.analisar("codigo.txt");
         //System.out.println(tabelaLexica);
 
@@ -29,13 +29,16 @@ public class MainClass {
                 tokensStack.push(linha[1].trim());
             }
             //System.out.println(tokensStack.peek());
-
         }
 
+        int result = AnalisadorSintatico.analisar(tokensStack);
+        if(result == -1) System.out.println("$");
+        /*debug
         //isso esvazia a pilha kkkkk APAGA!!
         while(!tokensStack.empty()){
             System.out.println(tokensStack.pop());
         }
+        */
     }
 
 }

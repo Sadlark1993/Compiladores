@@ -1,3 +1,5 @@
+//A listagem de tokens comeca com 1.
+
 package main;
 
 import java.util.Stack;
@@ -19,6 +21,7 @@ public class AnalisadorSintatico {
 
       
       if(tokensStack.peek().equals( nTermStack.peek())){ //desempilhamento
+        aux++;
         tokensStack.pop();
         nTermStack.pop();
         //System.out.println("pop"); // debug
@@ -28,7 +31,8 @@ public class AnalisadorSintatico {
         }else if(tokensStack.peek().equals("escreva")||tokensStack.peek().equals("se")||tokensStack.peek().equals("enquanto")||tokensStack.peek().equals("id")){
           op0();
         }else{
-          throw new SintaticaException("Sem combinacao para o nao terminal <COD>. Token na pilha: "+tokensStack.peek()+".");
+          System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Nao terminal <COD>.");
+          return ++aux;
         }
       }else if(nTermStack.peek().equals("<LINHA>")){
         if(tokensStack.peek().equals("escreva")){
@@ -40,13 +44,15 @@ public class AnalisadorSintatico {
         }else if(tokensStack.peek().equals("id")){
           op2();
         }else{
-          throw new SintaticaException("Sem combinacao para o nao terminal <LINHA>. Token na pilha: "+tokensStack.peek()+".");
+          System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Nao terminal <LINHA>.");
+          return ++aux;
         }
       }else if(nTermStack.peek().equals("<ATRIB>")){
         if(tokensStack.peek().equals("id")){
           op6();
         }else{
-          throw new SintaticaException("Sem combinacao para o nao terminal <ATRIB>");
+          System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Era esperado um ID.");
+          return ++aux;
         }
       }else if(nTermStack.peek().equals("<ATRIB2>")){
         switch(tokensStack.peek()){
@@ -66,21 +72,24 @@ public class AnalisadorSintatico {
             op9();
             break;
           default:
-            throw new SintaticaException("Sem combinacao para o nao terminal <ATRIB2>");
+            System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Nao terminal <ATRIB2>.");
+            return ++aux;
         }
       }else if(nTermStack.peek().equals("<LEITURA>")){
         if(tokensStack.peek().equals("leia")){
           op10();
         }else{
-          throw new SintaticaException("Sem combinacao para o nao terminal <LEITURA>");
+          System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Era esperado \"leia\".");
+          return ++aux;
         }
       }else if(nTermStack.peek().equals("<ESCRITA>")){
         if(tokensStack.peek().equals("escreva")){
           op24();
         }else{
-          throw new SintaticaException("Sem combinacao para o nao terminal <LEITURA>");
+          System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Era esperado \"escreva\".");
+          return ++aux;
         }
-      }else if(nTermStack.peek()=="<EXP>"){
+      }else if(nTermStack.peek().equals("<EXP>")){
         switch(tokensStack.peek()){
           case "apar":
             op11();
@@ -92,9 +101,10 @@ public class AnalisadorSintatico {
             op11();
             break;
           default:
-            throw new SintaticaException("Sem combinacao para o nao terminal <EXP>");
+          System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Nao terminal <EXP>.");
+          return ++aux;
         }
-      }else if(nTermStack.peek()=="<FATOR>"){
+      }else if(nTermStack.peek().equals("<FATOR>")){
         switch(tokensStack.peek()){
           case "apar":
             op14();
@@ -106,9 +116,10 @@ public class AnalisadorSintatico {
             op14();
             break;
           default:
-            throw new SintaticaException("Sem combinacao para o nao terminal <FATOR>");
+            System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Nao terminal <FATOR>.");
+            return ++aux;
         }
-      }else if(nTermStack.peek()=="<FATOR2>"){
+      }else if(nTermStack.peek().equals("<FATOR2>")){
         switch(tokensStack.peek()){
           case "mais":
             op16();
@@ -147,10 +158,11 @@ public class AnalisadorSintatico {
             op16();
             break;
           default:
-            throw new SintaticaException("Sem combinacao para o nao terminal <FATOR2>");
+            System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Nao terminal <FATOR2>.");
+            return ++aux;
 
         }
-      }else if(nTermStack.peek()=="<OPERANDO>"){
+      }else if(nTermStack.peek().equals("<OPERANDO>")){
         switch(tokensStack.peek()){
           case "apar":
             op19();
@@ -162,9 +174,10 @@ public class AnalisadorSintatico {
             op18();
             break;
           default:
-          throw new SintaticaException("Sem combinacao para o nao terminal <FATOR2>");
+            System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Nao terminal <OPERANDO>.");
+            return ++aux;
         }
-      }else if(nTermStack.peek()=="<TERMO>"){
+      }else if(nTermStack.peek().equals("<TERMO>")){
         switch(tokensStack.peek()){
           case "mais":
             op12();
@@ -197,9 +210,10 @@ public class AnalisadorSintatico {
             op13();
             break;
           default:
-            throw new SintaticaException("Sem combinacao para o nao terminal <TERMO>");
+          System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Nao terminal <TERMO>.");
+          return ++aux;
         }
-      }else if(nTermStack.peek()=="<SOMA>"){
+      }else if(nTermStack.peek().equals("<SOMA>")){
         switch(tokensStack.peek()){
           case "mais":
             op20();
@@ -208,9 +222,10 @@ public class AnalisadorSintatico {
             op21();
             break;
           default:
-          throw new SintaticaException("Sem combinacao para o nao terminal <SOMA>");
+            System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Era esperado um operador de <SOMA>.");
+            return ++aux;
         }
-      }else if(nTermStack.peek()=="<MULT>"){
+      }else if(nTermStack.peek().equals("<MULT>")){
         switch(tokensStack.peek()){
           case "mult":
             op23();
@@ -219,10 +234,11 @@ public class AnalisadorSintatico {
             op22();
             break;
           default:
-            throw new SintaticaException("Sem combinacao para o nao terminal <MULT>");
+            System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Era esperado um operador de multiplicacao. <MULT>.");
+            return ++aux;
 
         }
-      }else if(nTermStack.peek()=="<TEXT>"){
+      }else if(nTermStack.peek().equals("<TEXT>")){
         switch(tokensStack.peek()){
           case "apar":
             op26();
@@ -237,9 +253,10 @@ public class AnalisadorSintatico {
             op25();
             break;
           default:
-            throw new SintaticaException("Sem combinacao para o nao terminal <TEXT>");
+            System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Nao terminal <TEXT>.");
+            return ++aux;
         }
-      }else if(nTermStack.peek()=="<TEXT2>"){
+      }else if(nTermStack.peek().equals("<TEXT2>")){
         switch(tokensStack.peek()){
           case "virgula":
             op27();
@@ -248,13 +265,15 @@ public class AnalisadorSintatico {
             op28();
             break;
           default:
-            throw new SintaticaException("Sem combinacao para o nao terminal <TEXT>");
+            System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Nao terminal <TEXT2>.");
+            return ++aux;
         }
       }else if(nTermStack.peek().equals("<COND>")){
         if(tokensStack.peek().equals("se")){
           op29();
         }else{
-          throw new SintaticaException("Sem combinacao para o nao terminal <COND>");
+          System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Nao terminal <COND>.");
+          return ++aux;
         }
       }else if(nTermStack.peek().equals("<BOOLEXP>")){
         switch(tokensStack.peek()){
@@ -271,9 +290,10 @@ public class AnalisadorSintatico {
             op30();
             break;
           default:
-            throw new SintaticaException("Sem combinacao para o nao terminal <BOOLEXP>");
+            System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Nao terminal <BOOLEXP>.");
+            return ++aux;
         }
-      }else if(nTermStack.peek()=="<BOOLTERMO>"){
+      }else if(nTermStack.peek().equals("<BOOLTERMO>")){
         switch(tokensStack.peek()){
           case "igual":
             op31();
@@ -291,9 +311,10 @@ public class AnalisadorSintatico {
             op32();
             break;
           default:
-            throw new SintaticaException("Sem combinacao para o nao terminal <BOOLEXP>");
+            System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Nao terminal <BOOLTERMO>.");
+            return ++aux;
         }
-      }else if(nTermStack.peek()=="<BOOLFATOR>"){
+      }else if(nTermStack.peek().equals("<BOOLFATOR>")){
         switch(tokensStack.peek()){
           case "apar":
             op33();
@@ -308,9 +329,10 @@ public class AnalisadorSintatico {
             op33();
             break;
           default:
-            throw new SintaticaException("Sem combinacao para o nao terminal <BOOLEXP>");
+            System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Nao terminal <BOOLFATOR>.");
+            return ++aux;
         }
-      }else if(nTermStack.peek()=="<BOOLOPERADOR>"){
+      }else if(nTermStack.peek().equals("<BOOLOPERADOR>")){
         switch(tokensStack.peek()){
           case "igual":
             op37();
@@ -322,9 +344,10 @@ public class AnalisadorSintatico {
             op35();
             break;
           default:
-            throw new SintaticaException("Sem combinacao para o nao terminal <BOOLOPERADOR>");
+            System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Nao terminal <BOOLOPERADOR>.");
+            return ++aux;
         }
-      }else if(nTermStack.peek()=="<SENAO>"){
+      }else if(nTermStack.peek().equals("<SENAO>")){
         switch(tokensStack.peek()){
           case "$":
             op41();
@@ -348,9 +371,10 @@ public class AnalisadorSintatico {
             op41();
             break;
           default:
-            throw new SintaticaException("Sem combinacao para o nao terminal <SENAO>");
+            System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Nao terminal <SENAO>.");
+            return ++aux;
         }
-      }else if(nTermStack.peek()=="<LINHAS>"){
+      }else if(nTermStack.peek().equals("<LINHAS>")){
         switch(tokensStack.peek()){
           case "escreva":
             op38();
@@ -368,13 +392,15 @@ public class AnalisadorSintatico {
             op38();
             break;
           default:
-            throw new SintaticaException("Sem combinacao para o nao terminal <LINHAS>");
+            System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Nao terminal <LINHAS>.");
+            return ++aux;
         }
       }else if(nTermStack.peek().equals("<LOOP>")){
         if(tokensStack.peek().equals("enquanto")){
           op44();
         }else{
-          throw new SintaticaException("Sem combinacao para o nao terminal <LOOP>");
+          System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Era esperado \"enquanto\". Nao terminal <LOOP>.");
+            return ++aux;
         }
       }else if(nTermStack.peek().equals("<SE>")){
         switch(tokensStack.peek()){
@@ -385,13 +411,13 @@ public class AnalisadorSintatico {
             op42();
             break;
           default:
-            throw new SintaticaException("Sem combinacao para o nao terminal <SE>");
+            System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Nao terminal <SE>.");
+            return ++aux;
         }
       }else{
-        throw new SintaticaException("Erro Sintatico. Termo esperado: "+nTermStack.peek());
+        System.out.println("Token \""+tokensStack.peek()+"\" inesperado. Era esperado \""+nTermStack.peek()+"\".");
+        return ++aux;
       }
-
-      aux++;
     }
 
     System.out.println("Analise completa. Nenhum erro encontrado.");

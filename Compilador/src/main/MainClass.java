@@ -33,6 +33,15 @@ public class MainClass {
 
         int result = AnalisadorSintatico.analisar(tokensStack);
         if(result == -1) System.out.println("$");
+        else {
+            //System.out.println(result); //debug: numeracao do token na pilha
+
+            String[] linha2 = linTabLex[result].split(";");
+            System.out.println("linha "+(Integer.parseInt(linha2[linha2.length-1].trim())+1)+", coluna "+(Integer.parseInt(linha2[linha2.length-2].trim())+1)+".");
+        }
+
+
+
         /*debug
         //isso esvazia a pilha kkkkk APAGA!!
         while(!tokensStack.empty()){

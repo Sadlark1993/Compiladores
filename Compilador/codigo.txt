@@ -16,7 +16,7 @@ a := leia;
 b := leia;
 c := leia;
 
-se a<b{
+se a>b{
 	se b<c{
 		escreva a, ', ', b, ' ', c, '\n'; 
 	}senao se a<c{
@@ -34,4 +34,10 @@ se a<b{
 		escreva b;
 		escreva '\n';	
 	}
+}senao se a>c{
+	escreva b, ',', a, ',', c, '\n';
+}senao se b>c{
+	escreva b, ',', c, ',', a, '\n';
+}senao{
+	escreva c, ',', b, ',', a, '\n';
 }

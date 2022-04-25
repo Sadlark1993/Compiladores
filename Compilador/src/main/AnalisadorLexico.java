@@ -119,7 +119,7 @@ public class AnalisadorLexico {
                     return "";
                 }else{
                     throw new LexicaException("Erro. Caractere nao reconhecido "
-                        + "na linha "+row+" e coluna "+column);
+                        + "na linha "+(row+1)+" e coluna "+(column+1));
                 }
         }
     }
@@ -536,7 +536,7 @@ public class AnalisadorLexico {
             }
         }
         throw new LexicaException("Erro. Caractere \""+linha.charAt(column)+
-            "\" nao reconhecido na linha "+row+" e coluna "+column+"."+
+            "\" nao reconhecido na linha "+(row+1)+" e coluna "+(column+1)+"."+
             " Era esperado \"=\".");
     }
     
@@ -554,7 +554,7 @@ public class AnalisadorLexico {
             }
         }
         throw new LexicaException("Erro. Caractere \""+linha.charAt(column)+
-            "\" nao reconhecido na linha "+row+" e coluna "+column+"."+
+            "\" nao reconhecido na linha "+(row+1)+" e coluna "+(column+1)+"."+
             " Era esperado \"=\".");
     }
     
@@ -620,7 +620,7 @@ public class AnalisadorLexico {
                 return q41();
             }else if(Character.isLetter(linha.charAt(column))){
                throw new LexicaException("Erro. Caractere \""+linha.charAt(column)+
-                       "\" nao reconhecido na linha "+row+" e coluna "+column+".");
+                       "\" nao reconhecido na linha "+(row+1)+" e coluna "+(column+1)+".");
             }
         }
         
@@ -644,7 +644,7 @@ public class AnalisadorLexico {
                 return q44();
             }
         }
-        throw new LexicaException("Erro na linha "+row+" e coluna "+column+"."
+        throw new LexicaException("Erro na linha "+(row+1)+" e coluna "+(column+1)+"."
             +" Era esperado \"\'\".");
     }
     
@@ -658,7 +658,7 @@ public class AnalisadorLexico {
                 return q44();
             }
         }
-        throw new LexicaException("Erro na linha "+row+" e coluna "+column+"."
+        throw new LexicaException("Erro na linha "+(row+1)+" e coluna "+(column+1)+"."
             +" Era esperado \"\'\".");
     }
     

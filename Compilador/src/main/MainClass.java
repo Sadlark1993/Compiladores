@@ -3,12 +3,24 @@
 
 package main;
 import java.util.Stack;
+import javax.swing.JOptionPane;
 
 public class MainClass {
 
-    public static void main(String[] args) throws LexicaException, SintaticaException {
-        String tabelaLexica = AnalisadorLexico.analisar("codigo.txt");
-        //System.out.println(tabelaLexica);
+    public static void main(String[] args) throws LexicaException, SintaticaException, Exception {
+        String arquivo = JOptionPane.showInputDialog(null, "Insira o nome do arquivo com a exensao.");
+
+        //coletando opcao
+        EnumMenu opcao = EnumMenu.apenas_o_log;
+        opcao = (EnumMenu) JOptionPane.showInputDialog(null, "Escolha uma opção:", "Menu", JOptionPane.QUESTION_MESSAGE, null, EnumMenu.values(), EnumMenu.values()[0]);
+        //if(opcao == null) throw new Exception("Nenhuma opcao escolhida.");
+
+        String tabelaLexica = AnalisadorLexico.analisar(arquivo);
+        if(opcao == EnumMenu.todas_as_listagens){ 
+            System.out.println("********** TABELA LEXICA **********");
+            System.out.println(tabelaLexica);
+            System.out.println("************************************\n");
+        }
 
         String[] linTabLex = tabelaLexica.split("\n");
         //System.out.println(linTabLex[1]);
@@ -29,6 +41,15 @@ public class MainClass {
                 tokensStack.push(linha[1].trim());
             }
             //System.out.println(tokensStack.peek());
+        }
+
+        if(opcao == EnumMenu.todas_as_listagens || opcao == EnumMenu.a_lista_de_tokens){
+            Stack copyTokensStack = (Stack) tokensStack.clone();
+            System.out.println("********** Lista de Tokens **********");
+            while(copyTokensStack.peek()!="$"){
+                System.out.println(copyTokensStack.pop());
+            }
+            System.out.println("*********************************\n");
         }
 
         int result = AnalisadorSintatico.analisar(tokensStack);

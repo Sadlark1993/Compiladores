@@ -66,7 +66,7 @@ public class MainClass {
         /*debug
         //isso esvazia a pilha kkkkk APAGA!!
         while(!tokensStack.empty()){
-            System.out.println(tokensStack.pop());
+            System.out.println(tokensStack.pop()); . 
         }
         */
     }

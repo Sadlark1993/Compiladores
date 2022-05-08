@@ -61,11 +61,6 @@ public class MainClass {
             }
         }
 
-
-
-
-
-
         if(opcao == EnumMenu.todas_as_listagens || opcao == EnumMenu.a_lista_de_tokens){
             Stack copyTokensStack = (Stack) tokensStack.clone();
             System.out.println("********** Lista de Tokens **********");
@@ -81,24 +76,16 @@ public class MainClass {
             //System.out.println(result); //debug: numeracao do token na pilha
 
             String[] linha2 = linTabLex[result].split(";");
-            System.out.println("linha "+(Integer.parseInt(linha2[linha2.length-1].trim())+1)+", coluna "+(Integer.parseInt(linha2[linha2.length-2].trim())+1)+".");
+            throw new SintaticaException("linha "+(Integer.parseInt(linha2[linha2.length-1].trim())+1)+", coluna "+(Integer.parseInt(linha2[linha2.length-2].trim())+1)+".");
         }
 
         result = AnalisadorSemantico.analisar(lexemasList, tokensList, variaveis);
         if(result == -1) System.out.println("Nenhum erro semantico encontrado.");
         else{
+            result++;
             String[] linha2 = linTabLex[result].split(";");
-            System.out.println("linha "+(Integer.parseInt(linha2[linha2.length-1].trim())+1)+", coluna "+(Integer.parseInt(linha2[linha2.length-2].trim())+1)+".");
+            throw new Exception("linha "+(Integer.parseInt(linha2[linha2.length-1].trim())+1)+", coluna "+(Integer.parseInt(linha2[linha2.length-2].trim())+1)+".");
         }
-
-
-
-        /*debug
-        //isso esvazia a pilha kkkkk APAGA!!
-        while(!tokensStack.empty()){
-            System.out.println(tokensStack.pop()); .
-        }
-        */
     }
 
 }

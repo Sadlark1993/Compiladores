@@ -1,4 +1,12 @@
-package main;
+/* Essa classe implementa o metodo estatico eval, cujo objetivo eh retornar o valor 
+double de expressoes aritmeticas contidas em String.
+
+************************ESSA CLASSE NAO EH DE MINHA AUTORIA*************************
+Todos os creditos reservados a: https://stackoverflow.com/users/964243/boann
+fonte: https://stackoverflow.com/a/26227947/19071269
+*/
+
+package externalClasses;
 
 public class Evaluation{
     public static double eval(final String str) {

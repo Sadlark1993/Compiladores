@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import main.Evaluation;
+import externalClasses.Evaluation;
 
 public class MainTestes {
     public static void main(String[] args){

@@ -5,6 +5,8 @@ aux := 5*5;
 aux2 := 15+10;
 aux3 := aux-aux2;
 
+a := 'coisa';
+
 a := 2;
 a := leia;
 b := a-1;
@@ -13,13 +15,16 @@ enquanto b>1{
 	b := b-1;
 }
 
-escreva a;
+escreva a/(aux-aux2+1); %tire o +1 para causar divisao por zero
 
-%analise combinatoria%
+%analise combinatoria
 
 a := leia;
 b := leia;
 c := leia;
+
+
+a := 2;
 
 se a>b{
 	se b<c{
@@ -40,6 +45,7 @@ se a>b{
 		escreva '\n';	
 	}
 }senao se a>c{
+	testando := 8;
 	escreva b, ',', a, ',', c, '\n';
 }senao se b>c{
 	escreva b, ',', c, ',', a, '\n';

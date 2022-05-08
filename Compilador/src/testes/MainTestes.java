@@ -1,8 +1,10 @@
 
-package test;
+package testes;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
+import main.Evaluation;
 
 public class MainTestes {
     public static void main(String[] args){
@@ -38,6 +40,7 @@ public class MainTestes {
             System.out.println("banana");
         }
 
+
              
         //testanto string
         /*
@@ -59,5 +62,9 @@ public class MainTestes {
         coisa += 's';
         System.out.println(coisa);
         */
+
+        int valor = (int)Evaluation.eval("2+5*5");
+
+        System.out.println("resultado: "+valor);
     }
 }

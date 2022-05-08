@@ -420,7 +420,7 @@ public class AnalisadorSintatico {
       }
     }
 
-    System.out.println("Analise completa. Nenhum erro encontrado.");
+    System.out.println("Analise sintatica completa. Nenhum erro sintatico encontrado.");
     return -1;
   }
 

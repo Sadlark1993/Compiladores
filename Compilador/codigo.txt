@@ -1,6 +1,11 @@
 
 %fatorial%
 
+aux := 5*5;
+aux2 := 15+10;
+aux3 := aux-aux2;
+
+a := 2;
 a := leia;
 b := a-1;
 enquanto b>1{

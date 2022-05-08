@@ -2,6 +2,9 @@
 
 
 package main;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Stack;
 import javax.swing.JOptionPane;
 
@@ -27,6 +30,9 @@ public class MainClass {
         String aux;
         String[] linha = new String[4];
         Stack<String> tokensStack = new Stack<String>();
+        HashMap<String, String> variaveis = new HashMap<>();
+        List<String> tokensList = new ArrayList<>();
+        List<String> lexemasList = new ArrayList<>();
 
         tokensStack.push("$");
         //the list of tokens must be stacked in the reverse order. So the first token will be the first to be analized.
@@ -43,6 +49,23 @@ public class MainClass {
             //System.out.println(tokensStack.peek());
         }
 
+        for(int i = 1; i<linTabLex.length ;i++){
+            aux = linTabLex[i];
+            if(aux.charAt(0)==';'){
+                tokensList.add("final");
+                lexemasList.add(";");
+            }else{
+                linha = aux.split(";");
+                tokensList.add(linha[1].trim());
+                lexemasList.add(linha[0].trim());
+            }
+        }
+
+
+
+
+
+
         if(opcao == EnumMenu.todas_as_listagens || opcao == EnumMenu.a_lista_de_tokens){
             Stack copyTokensStack = (Stack) tokensStack.clone();
             System.out.println("********** Lista de Tokens **********");
@@ -57,6 +80,13 @@ public class MainClass {
         else {
             //System.out.println(result); //debug: numeracao do token na pilha
 
+            String[] linha2 = linTabLex[result].split(";");
+            System.out.println("linha "+(Integer.parseInt(linha2[linha2.length-1].trim())+1)+", coluna "+(Integer.parseInt(linha2[linha2.length-2].trim())+1)+".");
+        }
+
+        result = AnalisadorSemantico.analisar(lexemasList, tokensList, variaveis);
+        if(result == -1) System.out.println("Nenhum erro semantico encontrado.");
+        else{
             String[] linha2 = linTabLex[result].split(";");
             System.out.println("linha "+(Integer.parseInt(linha2[linha2.length-1].trim())+1)+", coluna "+(Integer.parseInt(linha2[linha2.length-2].trim())+1)+".");
         }

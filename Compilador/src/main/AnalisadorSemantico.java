@@ -146,9 +146,11 @@ public class AnalisadorSemantico {
               }
             }else{
               //se for o numero zero:
-              if(tokensList.get(aux+1).equals("numero")&&Evaluation.eval(lexemasList.get(aux+1)) == 0){
-                System.out.println("Erro semantico. Divisao por zero.");
-                return linha;
+              if(tokensList.get(aux+1).equals("numero")){
+                if(Evaluation.eval(lexemasList.get(aux+1)) == 0){
+                  System.out.println("Erro semantico. Divisao por zero.");
+                  return linha;
+                }
 
               //se for uma variavel com zero dentro:
               }else if(Evaluation.eval(variaveis.get(lexemasList.get(aux+1)))==0){

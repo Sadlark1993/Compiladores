@@ -1,0 +1,27 @@
+%********inicio da declaracao de variaveis********
+int a
+int b
+%********fim da declaracao de variaveis********
+a := 5 
+_var2 :=  2 * a
+_var3 :=  a + 15
+_var1 := _var3 - _var2 
+_var0 := a / _var1 
+escreva _var0
+escreva '\n'
+b := leia
+se a > 5 goto _L0
+goto _L1
+_L0:
+_var4 := a + 1 
+c := 3 * _var4 
+goto _L2
+_L1:
+se a < 2 goto _L3
+goto _L4
+_L3:
+escreva 'deu certo\n'
+goto _L2
+_L4:
+a := a + 1 
+_L2:

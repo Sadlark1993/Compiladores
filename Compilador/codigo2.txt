@@ -1,0 +1,14 @@
+
+a := 5;
+
+escreva a/(a+15-2*a), '\n';
+
+b:=leia;
+
+se a>5 {
+  c:=3*(a+1);
+}senao se a<2{
+  escreva 'deu certo\n';
+}senao{
+  a:=a+1;
+}

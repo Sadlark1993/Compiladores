@@ -86,6 +86,18 @@ public class MainClass {
             String[] linha2 = linTabLex[result].split(";");
             throw new Exception("linha "+(Integer.parseInt(linha2[linha2.length-1].trim())+1)+", coluna "+(Integer.parseInt(linha2[linha2.length-2].trim())+1)+".");
         }
-    }
+
+        //popula a lista de variaveis
+        List<String> var = new ArrayList<>();
+        for(String key : variaveis.keySet() ){
+            var.add(key);
+        }
+
+        //aqui ficarao armazenados a lista de lexemas e a lista de tokens.
+        List<String> lexemasInt = new ArrayList<>();
+        List<String> tokensInt = new ArrayList<>();
+
+        GeradorIntermediario.gerar(lexemasList, tokensList, lexemasInt, tokensInt, var, arquivo);
+    }//fim do metodo main
 
 }

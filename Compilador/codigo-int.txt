@@ -1,0 +1,100 @@
+%********inicio da declaracao de variaveis********
+int a
+int aux3
+int b
+int aux2
+int c
+int aux
+%********fim da declaracao de variaveis********
+aux := 5 * 5 
+aux2 := 15 + 10 
+aux3 := aux - aux2 
+a := 2 
+a := leia
+b := a - 1 
+_L0:
+se b > 1 goto _L1
+goto _L2
+_L1:
+a := a * b 
+b := b - 1 
+goto_L0
+_L2:
+_var2 :=  aux - aux2
+_var1 := _var2 + 1 
+_var0 := a / _var1 
+escreva _var0
+a := leia
+b := leia
+c := leia
+a := 2 
+se a > b goto _L0
+goto _L1
+_L0:
+se b < c goto _L2
+goto _L3
+_L2:
+escreva a
+escreva ', '
+escreva b
+escreva ' '
+escreva c
+escreva '\n'
+goto _L4
+_L3:
+se a < c goto _L5
+goto _L6
+_L5:
+_var3 := a 
+escreva _var3
+escreva ' '
+_var4 := c 
+escreva _var4
+escreva ' '
+_var5 := b 
+escreva _var5
+escreva '\n'
+goto _L4
+_L6:
+_var6 := c 
+escreva _var6
+escreva ' '
+_var7 := a 
+escreva _var7
+escreva ' '
+_var8 := b 
+escreva _var8
+escreva '\n'
+_L4:
+goto _L7
+_L1:
+se a > c goto _L8
+goto _L9
+_L8:
+testando := 8 
+escreva b
+escreva ','
+escreva a
+escreva ','
+escreva c
+escreva '\n'
+goto _L7
+_L9:
+se b > c goto _L10
+goto _L11
+_L10:
+escreva b
+escreva ','
+escreva c
+escreva ','
+escreva a
+escreva '\n'
+goto _L7
+_L11:
+escreva c
+escreva ','
+escreva b
+escreva ','
+escreva a
+escreva '\n'
+_L7:

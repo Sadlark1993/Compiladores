@@ -407,6 +407,7 @@ public class GeradorIntermediario {
             List<String> lexemas = chaveStack.pop();
             for(String aux : lexemas){
               codigo += aux;
+              codigo += " ";
               if(Character.isDigit(aux.charAt(aux.length()-1))||aux.charAt(aux.length()-1)==':'){
                 codigo += "\n";
               }
@@ -430,6 +431,7 @@ public class GeradorIntermediario {
             List<String> lexemas = chaveStack.pop();
             for(String aux : lexemas){
               codigo += aux;
+              codigo += " ";
               if(Character.isDigit(aux.charAt(aux.length()-1))||aux.charAt(aux.length()-1)==':'){
                 codigo += "\n";
               }

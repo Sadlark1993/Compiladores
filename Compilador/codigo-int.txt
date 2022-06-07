@@ -18,8 +18,8 @@ goto _L2
 _L1:
 a := a * b 
 b := b - 1 
-goto_L0
-_L2:
+goto _L0 
+_L2: 
 _var2 :=  aux - aux2
 _var1 := _var2 + 1 
 _var0 := a / _var1 
@@ -41,7 +41,7 @@ escreva ' '
 escreva c
 escreva '\n'
 goto _L4
-_L3:
+_L3: 
 se a < c goto _L5
 goto _L6
 _L5:
@@ -55,7 +55,7 @@ _var5 := b
 escreva _var5
 escreva '\n'
 goto _L4
-_L6:
+_L6: 
 _var6 := c 
 escreva _var6
 escreva ' '
@@ -67,7 +67,7 @@ escreva _var8
 escreva '\n'
 _L4:
 goto _L7
-_L1:
+_L1: 
 se a > c goto _L8
 goto _L9
 _L8:
@@ -79,7 +79,7 @@ escreva ','
 escreva c
 escreva '\n'
 goto _L7
-_L9:
+_L9: 
 se b > c goto _L10
 goto _L11
 _L10:
@@ -90,7 +90,7 @@ escreva ','
 escreva a
 escreva '\n'
 goto _L7
-_L11:
+_L11: 
 escreva c
 escreva ','
 escreva b

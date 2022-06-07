@@ -98,6 +98,10 @@ public class MainClass {
         List<String> tokensInt = new ArrayList<>();
 
         GeradorIntermediario.gerar(lexemasList, tokensList, lexemasInt, tokensInt, var, arquivo);
+
+        //System.out.println("\n\n*****Lista de Tokens do Codigo Intermediario*****");
+        for(String token : tokensInt) System.out.println(token);
+
     }//fim do metodo main
 
 }

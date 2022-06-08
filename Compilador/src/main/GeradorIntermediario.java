@@ -135,7 +135,7 @@ public class GeradorIntermediario {
           condLex.add("_L"+iLabel);
           condLex.add("goto");
           condLex.add("_L"+(iLabel+1));
-          condLex.add("L_"+iLabel+":");
+          condLex.add("_L"+iLabel+":");
 
           //System.out.println("condicional inserida no codigo intermediario:\n"+cond);//debug
 
@@ -359,7 +359,9 @@ public class GeradorIntermediario {
                 lexemasInt.add("_var"+numVar);
               }else if(tokensList.get(i).equals("string")){
                 codigo += "escreva "+lexemasList.get(i)+"\n";
+                tokensInt.add("escreva");
                 tokensInt.add("string");
+                lexemasInt.add("escreva");
                 lexemasInt.add(lexemasList.get(i));
               }
 

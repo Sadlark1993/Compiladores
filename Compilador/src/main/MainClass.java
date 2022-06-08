@@ -100,7 +100,9 @@ public class MainClass {
         GeradorIntermediario.gerar(lexemasList, tokensList, lexemasInt, tokensInt, var, arquivo);
 
         //System.out.println("\n\n*****Lista de Tokens do Codigo Intermediario*****");
-        for(String token : tokensInt) System.out.println(token);
+        for(String token : tokensInt) System.out.println(token); //debug: lista de tokens do codigo intermediario
+
+        GeradorFinal.gerar(lexemasInt, tokensInt, var, arquivo);
 
     }//fim do metodo main
 

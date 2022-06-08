@@ -1,11 +1,25 @@
 %********inicio da declaracao de variaveis********
 int a
+int b
 %********fim da declaracao de variaveis********
-a := 5 
+escreva 'insira dois valores'
+a := leia
+b := leia
+escreva '\no numero maior eh:\n'
+se a > b goto _L0
+goto _L1
 _L0:
-se a < 2 goto _L1
+_var0 := a 
+escreva _var0
 goto _L2
-_L1:
-escreva 'deu certo\n'
-goto _L0 
-_L2: 
+_L1: 
+se a == b goto _L3
+goto _L4
+_L3:
+escreva 'nenhum deles'
+goto _L2
+_L4: 
+_var1 := b 
+escreva _var1
+_L2:
+escreva '\n'

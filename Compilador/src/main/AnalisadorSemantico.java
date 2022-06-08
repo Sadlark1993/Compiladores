@@ -140,7 +140,7 @@ public class AnalisadorSemantico {
               }
               
               //verifica se valorVar da zero.
-              if(Evaluation.eval(valorVar)==0){
+              if(!valorVar.equals("leia") && Evaluation.eval(valorVar)==0){
                 System.out.println("Erro semantico. Divisao por zero.");
                 return linha;
               }
@@ -153,7 +153,7 @@ public class AnalisadorSemantico {
                 }
 
               //se for uma variavel com zero dentro:
-              }else if(Evaluation.eval(variaveis.get(lexemasList.get(aux+1)))==0){
+              }else if(!variaveis.get(lexemasList.get(aux+1)).equals("leia")&&Evaluation.eval(variaveis.get(lexemasList.get(aux+1)))==0){
                 System.out.println("Erro semantico. Divisao por zero.");
                 return linha;
               }

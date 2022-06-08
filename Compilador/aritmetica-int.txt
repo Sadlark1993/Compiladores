@@ -1,0 +1,19 @@
+%********inicio da declaracao de variaveis********
+int a
+int b
+%********fim da declaracao de variaveis********
+a := leia
+b := leia
+escreva 'imprimindo valores:\n'
+escreva 'soma: '
+_var0 := a + b 
+escreva _var0
+escreva '\nsubtracao: '
+_var1 := a - b 
+escreva _var1
+escreva '\nmultiplicacao: '
+_var2 := a * b 
+escreva _var2
+escreva '\ndivisao '
+_var3 := a / b 
+escreva _var3

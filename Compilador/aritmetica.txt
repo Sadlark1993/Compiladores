@@ -1,0 +1,14 @@
+%aritmetica
+
+a := leia;
+b := leia;
+
+escreva 'imprimindo valores:\n';
+escreva 'soma: ';
+escreva a+b;
+escreva '\nsubtracao: ';
+escreva a-b;
+escreva '\nmultiplicacao: ';
+escreva a*b;
+escreva '\ndivisao ';
+escreva a/b;

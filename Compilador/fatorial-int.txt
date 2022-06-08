@@ -1,0 +1,19 @@
+%********inicio da declaracao de variaveis********
+int a
+int b
+%********fim da declaracao de variaveis********
+escreva 'insira o valor para o fatorial:\n'
+a := leia
+b := a - 1 
+_L0:
+se b > 0 goto _L1
+goto _L2
+_L1:
+a := a * b 
+b := b - 1 
+goto _L0 
+_L2: 
+escreva 'resultado: '
+_var0 := a 
+escreva _var0
+escreva '\n'

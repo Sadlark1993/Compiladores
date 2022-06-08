@@ -1,0 +1,13 @@
+%fatorial
+
+escreva 'insira o valor para o fatorial:\n';
+a := leia;
+b := a-1;
+
+enquanto b>0{
+  a := a*b;
+  b := b-1;
+}
+escreva 'resultado: ';
+escreva a;
+escreva '\n';

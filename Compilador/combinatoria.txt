@@ -1,0 +1,39 @@
+
+%analise combinatoria
+
+
+escreva 'insira os tres valores:\n';
+a := leia;
+b := leia;
+c := leia;
+
+escreva '\n\n';
+
+
+se a>b{
+	se b>c{
+		escreva a, ', ', b, ' ', c, '\n'; 
+	}senao se a>c{
+		escreva a;
+		escreva ' ';
+		escreva c;
+		escreva ' ';
+		escreva b;
+		escreva '\n';
+	}senao{
+		escreva c;
+		escreva ' ';
+		escreva a;
+		escreva ' ';
+		escreva b;
+		escreva '\n';	
+	}
+}senao se a>c{
+	escreva b, ',', a, ',', c, '\n';
+}senao se b>c{
+	escreva b, ',', c, ',', a, '\n';
+}senao{
+	escreva c, ',', b, ',', a, '\n';
+}
+
+escreva '\n';

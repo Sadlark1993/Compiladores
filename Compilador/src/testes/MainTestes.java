@@ -1,18 +1,20 @@
 
 package testes;
-import java.io.File;
+/* import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import externalClasses.Evaluation;
+import externalClasses.Evaluation; */
 
 public class MainTestes {
     public static void main(String[] args){
 
-        String teste = "label4:";
+        System.out.println("\'");
+
+     /*    String teste = "label4:";
         if(teste.charAt(teste.length()-1)==':')
             System.out.println("deu certo");
-
+ */
        /*  File codFonte = new File("codigo.txt");
         String linha = "";
     

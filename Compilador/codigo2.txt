@@ -1,6 +1,14 @@
 
-a := 5;
-enquanto a<2{
-  escreva 'deu certo\n';
-}
+escreva 'insira dois valores';
+a := leia;
+b := leia;
 
+escreva '\no numero maior eh:\n';
+se a>b{
+  escreva a;
+}senao se a == b{
+  escreva 'nenhum deles';
+}senao{
+  escreva b;
+}
+escreva '\n';
